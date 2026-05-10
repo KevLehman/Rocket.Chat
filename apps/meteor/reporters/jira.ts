@@ -1,5 +1,4 @@
 import type { Reporter, TestCase, TestResult } from '@playwright/test/reporter';
-import fetch from 'node-fetch';
 
 const LOG = '[JIRA reporter]';
 

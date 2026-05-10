@@ -1,8 +1,7 @@
-import { webcrypto } from 'node:crypto';
+import { webcrypto, randomUUID } from 'node:crypto';
 import { TextEncoder, TextDecoder } from 'node:util';
 
 import { toHaveNoViolations } from 'jest-axe';
-import * as uuid from 'uuid';
 
 import '@testing-library/jest-dom';
 
@@ -16,7 +15,7 @@ Object.defineProperty(globalThis, 'crypto', {
 });
 
 globalThis.URL.createObjectURL = (blob: Blob): string => {
-	const url = urlByBlob.get(blob) ?? `blob://${uuid.v4()}`;
+	const url = urlByBlob.get(blob) ?? `blob://${randomUUID()}`;
 	urlByBlob.set(blob, url);
 	blobByUrl.set(url, blob);
 	return url;
