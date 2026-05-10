@@ -327,7 +327,7 @@ API.v1.get(
 				</svg>
 			`
 			.trim()
-			.replace(/\>[\s]+\</gm, '><');
+			.replaceAll(/\>[\s]+\</gm, '><');
 
 		return {
 			statusCode: 200 as const,

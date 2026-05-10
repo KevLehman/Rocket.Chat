@@ -35,7 +35,7 @@ export async function sendOfflineMessage(data: OfflineMessageData) {
 		throw new Error('error-invalid-email');
 	}
 
-	const emailMessage = `${message}`.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
+	const emailMessage = `${message}`.replaceAll(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
 
 	let html = '<h1>New livechat message</h1>';
 	if (host && host !== '') {

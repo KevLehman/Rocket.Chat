@@ -206,7 +206,7 @@ export class SAMLUtils {
 		return cert
 			.replace(/-+BEGIN CERTIFICATE-+\r?\n?/, '')
 			.replace(/-+END CERTIFICATE-+\r?\n?/, '')
-			.replace(/\r\n/g, '\n')
+			.replaceAll(/\r\n/g, '\n')
 			.trim();
 	}
 

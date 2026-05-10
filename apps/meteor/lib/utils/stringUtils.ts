@@ -49,7 +49,7 @@ export function capitalize(_str: unknown, lowercaseRest: boolean): string {
 }
 
 export function stripTags(str: unknown): string {
-	return sanitize(makeString(str)).replace(/<\/?[^>]+>/g, '');
+	return sanitize(makeString(str)).replaceAll(/<\/?[^>]+>/g, '');
 }
 
 export function strLeft(_str: unknown, _sep: unknown): string {
@@ -83,7 +83,7 @@ export function numberFormat(_number: number, dec: number, dsep?: string, tsep?:
 	const fnums = parts[0];
 	const decimals = parts[1] ? (dsep || '.') + parts[1] : '';
 
-	return fnums.replace(/(\d)(?=(?:\d{3})+$)/g, `$1${tsep}`) + decimals;
+	return fnums.replaceAll(/(\d)(?=(?:\d{3})+$)/g, `$1${tsep}`) + decimals;
 }
 
 export function pad(_str: unknown, _length: number, padStr?: string, type: 'right' | 'left' | 'both' = 'right') {

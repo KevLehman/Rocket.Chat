@@ -474,8 +474,8 @@ export class LDAPConnection {
 		const searchOptions: ldapjs.SearchOptions = {
 			filter: filter
 				.join('')
-				.replace(/#{username}/g, username)
-				.replace(/#{userdn}/g, userdn),
+				.replaceAll(/#{username}/g, username)
+				.replaceAll(/#{userdn}/g, userdn),
 			scope: 'sub',
 		};
 

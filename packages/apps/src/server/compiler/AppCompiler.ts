@@ -10,7 +10,7 @@ export class AppCompiler {
 		const result: { [key: string]: string } = {};
 
 		Object.entries(files).forEach(([name, content]) => {
-			result[name.replace(/\$/g, '.')] = content;
+			result[name.replaceAll(/\$/g, '.')] = content;
 		});
 
 		return result;

@@ -38,7 +38,7 @@ const GazzodownText = ({ mentions, channels, searchText, children }: GazzodownTe
 
 		// Due to unnecessary escaping in escapeRegExp, we need to remove the escape character for the following characters: - = ! :
 		// This is necessary because it was crashing the client due to Invalid regular expression error.
-		const alternatives = highlights.map(({ highlight }) => escapeRegExp(highlight).replace(/\\([-=!:])/g, '$1')).join('|');
+		const alternatives = highlights.map(({ highlight }) => escapeRegExp(highlight).replaceAll(/\\([-=!:])/g, '$1')).join('|');
 		const expression = `(?<=^|[\\p{P}\\p{Z}])(${alternatives})(?=$|[\\p{P}\\p{Z}])`;
 
 		return (): RegExp => new RegExp(expression, 'gmiu');

@@ -30,7 +30,7 @@ Meteor.methods<ServerMethods>({
 			throw new Meteor.Error('error-not-allowed', 'Not allowed', { method: 'removeOAuthService' });
 		}
 
-		name = name.toLowerCase().replace(/[^a-z0-9_]/g, '');
+		name = name.toLowerCase().replaceAll(/[^a-z0-9_]/g, '');
 		name = capitalize(name);
 
 		const settingsIds = [

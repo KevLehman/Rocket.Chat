@@ -69,11 +69,11 @@ export async function getEmailContent({ message, user, room }) {
 		message = await callbacks.run('renderMessage', message);
 		if (message.tokens && message.tokens.length > 0) {
 			message.tokens.forEach((token) => {
-				token.text = token.text.replace(/([^\$])(\$[^\$])/gm, '$1$$$2');
+				token.text = token.text.replaceAll(/([^\$])(\$[^\$])/gm, '$1$$$2');
 				messageContent = messageContent.replace(token.token, token.text);
 			});
 		}
-		contentParts.push(messageContent.replace(/\n/gm, '<br/>'));
+		contentParts.push(messageContent.replaceAll(/\n/gm, '<br/>'));
 	}
 
 	if (hasFiles) {
@@ -125,7 +125,7 @@ const getButtonUrl = (room, subscription, message) => {
 };
 
 function generateNameEmail(name, email) {
-	return `${String(name).replace(/@/g, '%40').replace(/[<>,]/g, '')} <${email}>`;
+	return `${String(name).replaceAll(/@/g, '%40').replaceAll(/[<>,]/g, '')} <${email}>`;
 }
 
 export async function getEmailData({ message, receiver, sender, subscription, room, emailAddress, hasMentionToUser }) {

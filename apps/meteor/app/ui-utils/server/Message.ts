@@ -21,7 +21,7 @@ export const Message = {
 		if (trim(msg.html) !== '') {
 			msg.html = escapeHTML(msg.html);
 		}
-		msg.html = msg.html.replace(/\n/gm, '<br/>');
+		msg.html = msg.html.replaceAll(/\n/gm, '<br/>');
 		return msg.html;
 	},
 };

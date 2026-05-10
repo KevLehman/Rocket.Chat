@@ -92,7 +92,7 @@ Meteor.startup(async () => {
 			].join('\n');
 			showWarningBox('DEPRECATION', msg);
 
-			// const id = `mongodbDeprecation_${mongoVersion.replace(/[^0-9]/g, '_')}`;
+			// const id = `mongodbDeprecation_${mongoVersion.replaceAll(/[^0-9]/g, '_')}`;
 			// const title = 'MongoDB_Deprecated';
 			// const text = 'MongoDB_version_s_is_deprecated_please_upgrade_your_installation';
 			// const link = 'https://go.rocket.chat/i/mongodb-deprecated';

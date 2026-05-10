@@ -38,7 +38,7 @@ const linkMarked = (href: string | null, _title: string | null, text: string): s
 const paragraphMarked = (text: string): string => text;
 const brMarked = (): string => ' ';
 const listItemMarked = (text: string): string => {
-	const cleanText = text.replace(/<p.*?>|<\/p>/gi, '');
+	const cleanText = text.replaceAll(/<p.*?>|<\/p>/gi, '');
 	return `<li>${cleanText}</li>`;
 };
 const horizontalRuleMarked = (): string => '';
@@ -49,7 +49,7 @@ const codeMarked = (code: string, language: string | undefined, _isEscaped: bool
 	return `<pre><code>${code} </code></pre>`;
 };
 const codespanMarked = (code: string): string => {
-	return `<code>${code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')}</code>`;
+	return `<code>${code.replaceAll(/&lt;/g, '<').replaceAll(/&gt;/g, '>').replaceAll(/&amp;/g, '&')}</code>`;
 };
 
 documentRenderer.link = linkMarked;

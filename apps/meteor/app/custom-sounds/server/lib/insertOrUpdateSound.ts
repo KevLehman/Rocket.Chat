@@ -7,7 +7,7 @@ import { RocketChatFileCustomSoundsInstance } from '../startup/custom-sounds';
 
 export const insertOrUpdateSound = async (soundData: ICustomSoundData): Promise<string> => {
 	// silently strip colon; this allows for uploading :soundname: as soundname
-	soundData.name = (soundData.name || '').replace(/:/g, '');
+	soundData.name = (soundData.name || '').replaceAll(/:/g, '');
 
 	if (!soundData.name.trim()) {
 		throw new Meteor.Error('error-the-field-is-required', 'The field Name is required', {

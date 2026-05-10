@@ -13,7 +13,7 @@ export async function getMongoVersion(cwd: string) {
 			return [];
 		}
 
-		return mongoMatch[1].replace(/["'\\ ]/g, '').split(',');
+		return mongoMatch[1].replaceAll(/["'\\ ]/g, '').split(',');
 	} catch (e) {
 		console.error(e);
 	}

@@ -77,7 +77,7 @@ const getUrlContent = async (urlObj: URL, redirectCount = 5): Promise<OEmbedUrlC
 	const ignoredHosts =
 		settings
 			.get<string>('API_EmbedIgnoredHosts')
-			.replace(/\s/g, '')
+			.replaceAll(/\s/g, '')
 			.split(',')
 			.filter(Boolean)
 			.map((host) => host.toLowerCase()) || [];
@@ -101,8 +101,8 @@ const getUrlContent = async (urlObj: URL, redirectCount = 5): Promise<OEmbedUrlC
 					return false;
 				}
 
-				const escaped = pattern.replace(/[-/\\^$+?.()|[\]{}]/g, '\\$&');
-				const source = `^${escaped.replace(/\*/g, '[^.]*')}$`;
+				const escaped = pattern.replaceAll(/[-/\\^$+?.()|[\]{}]/g, '\\$&');
+				const source = `^${escaped.replaceAll(/\*/g, '[^.]*')}$`;
 
 				try {
 					const regex = new RegExp(source, 'i');
@@ -118,7 +118,7 @@ const getUrlContent = async (urlObj: URL, redirectCount = 5): Promise<OEmbedUrlC
 		throw new Error('host is ignored');
 	}
 
-	const safePorts = settings.get<string>('API_EmbedSafePorts').replace(/\s/g, '').split(',') || [];
+	const safePorts = settings.get<string>('API_EmbedSafePorts').replaceAll(/\s/g, '').split(',') || [];
 
 	// checks if the URL port is in the safe ports list
 	if (safePorts.length > 0 && urlObj.port && !safePorts.includes(urlObj.port)) {
@@ -245,19 +245,19 @@ const getUrlMeta = async function (
 			metas[name] = metas[name] || he.unescape(value);
 			return metas[name];
 		};
-		content.body.replace(/<title[^>]*>([^<]*)<\/title>/gim, (_meta, title) => {
+		content.body.replaceAll(/<title[^>]*>([^<]*)<\/title>/gim, (_meta, title) => {
 			return escapeMeta('pageTitle', title);
 		});
-		content.body.replace(/<meta[^>]*(?:name|property)=[']([^']*)['][^>]*\scontent=[']([^']*)['][^>]*>/gim, (_meta, name, value) => {
+		content.body.replaceAll(/<meta[^>]*(?:name|property)=[']([^']*)['][^>]*\scontent=[']([^']*)['][^>]*>/gim, (_meta, name, value) => {
 			return escapeMeta(camelCase(name), value);
 		});
-		content.body.replace(/<meta[^>]*(?:name|property)=["]([^"]*)["][^>]*\scontent=["]([^"]*)["][^>]*>/gim, (_meta, name, value) => {
+		content.body.replaceAll(/<meta[^>]*(?:name|property)=["]([^"]*)["][^>]*\scontent=["]([^"]*)["][^>]*>/gim, (_meta, name, value) => {
 			return escapeMeta(camelCase(name), value);
 		});
-		content.body.replace(/<meta[^>]*\scontent=[']([^']*)['][^>]*(?:name|property)=[']([^']*)['][^>]*>/gim, (_meta, value, name) => {
+		content.body.replaceAll(/<meta[^>]*\scontent=[']([^']*)['][^>]*(?:name|property)=[']([^']*)['][^>]*>/gim, (_meta, value, name) => {
 			return escapeMeta(camelCase(name), value);
 		});
-		content.body.replace(/<meta[^>]*\scontent=["]([^"]*)["][^>]*(?:name|property)=["]([^"]*)["][^>]*>/gim, (_meta, value, name) => {
+		content.body.replaceAll(/<meta[^>]*\scontent=["]([^"]*)["][^>]*(?:name|property)=["]([^"]*)["][^>]*>/gim, (_meta, value, name) => {
 			return escapeMeta(camelCase(name), value);
 		});
 		if (metas.fragment === '!' && withFragment == null) {

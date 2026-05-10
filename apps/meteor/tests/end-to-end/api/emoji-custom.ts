@@ -484,7 +484,7 @@ describe('[EmojiCustom]', () => {
 	});
 
 	describe('Emoji storage settings reactivity', () => {
-		const normalizeSvg = (svg: string) => svg.replace(/\r\n/g, '\n').trim();
+		const normalizeSvg = (svg: string) => svg.replaceAll(/\r\n/g, '\n').trim();
 
 		const now = Date.now();
 		const fsEmojiName = `emoji-fs-${now}`;

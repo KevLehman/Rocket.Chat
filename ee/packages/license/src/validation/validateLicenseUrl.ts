@@ -9,8 +9,8 @@ import { getResultingBehavior } from './getResultingBehavior';
 
 const validateRegex = (licenseURL: string, url: string) => {
 	licenseURL = licenseURL
-		.replace(/\./g, '\\.') // convert dots to literal
-		.replace(/\*/g, '.*'); // convert * to .*
+		.replaceAll(/\./g, '\\.') // convert dots to literal
+		.replaceAll(/\*/g, '.*'); // convert * to .*
 	const regex = new RegExp(`^${licenseURL}$`, 'i');
 
 	return !!regex.exec(url);

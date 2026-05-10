@@ -59,7 +59,7 @@ export const replacePlaceholders = (text = '', replacer: (substring: string, cap
 };
 
 const replaceLineBreaks = (text: string) => {
-	return text.replace(/([^\n])\n(?!\n)/g, '$1  \n');
+	return text.replaceAll(/([^\n])\n(?!\n)/g, '$1  \n');
 };
 
 export const processTemplatePreviewText = (text: string, parameters: TemplateParameter[] = []): string => {

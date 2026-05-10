@@ -418,8 +418,8 @@ export class UserConverter extends RecordConverter<IImportUserRecord, UserConver
 
 	protected guessNameFromUsername(username: string): string {
 		return username
-			.replace(/\W/g, ' ')
-			.replace(/\s(.)/g, (u) => u.toUpperCase())
+			.replaceAll(/\W/g, ' ')
+			.replaceAll(/\s(.)/g, (u) => u.toUpperCase())
 			.replace(/^(.)/, (u) => u.toLowerCase())
 			.replace(/^\w/, (u) => u.toUpperCase());
 	}

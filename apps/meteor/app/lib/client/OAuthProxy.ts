@@ -4,7 +4,7 @@ import { settings } from '../../../client/lib/settings';
 
 OAuth.launchLogin = ((func) =>
 	function (options) {
-		const proxy = settings.peek('Accounts_OAuth_Proxy_services').replace(/\s/g, '').split(',');
+		const proxy = settings.peek('Accounts_OAuth_Proxy_services').replaceAll(/\s/g, '').split(',');
 		if (proxy.includes(options.loginService)) {
 			const redirectUri = options.loginUrl.match(/(&redirect_uri=)([^&]+|$)/)?.[2];
 			options.loginUrl = options.loginUrl.replace(

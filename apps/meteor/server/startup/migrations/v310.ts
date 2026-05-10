@@ -21,7 +21,7 @@ addMigration({
 			{
 				$set: {
 					packageValue: newPackageValue,
-					value: (forgotPasswordEmail.value as string).replace(/{Lets_get_you_new_one}/g, '{Lets_get_you_new_one_}'),
+					value: (forgotPasswordEmail.value as string).replaceAll(/{Lets_get_you_new_one}/g, '{Lets_get_you_new_one_}'),
 				},
 			},
 		);

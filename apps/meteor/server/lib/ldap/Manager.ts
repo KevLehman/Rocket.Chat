@@ -395,7 +395,7 @@ export class LDAPManager {
 		let uniqueIdentifierField: string | string[] | undefined = settings.get<string>('LDAP_Unique_Identifier_Field');
 
 		if (uniqueIdentifierField) {
-			uniqueIdentifierField = uniqueIdentifierField.replace(/\s/g, '').split(',');
+			uniqueIdentifierField = uniqueIdentifierField.replaceAll(/\s/g, '').split(',');
 		} else {
 			uniqueIdentifierField = [];
 		}
@@ -403,7 +403,7 @@ export class LDAPManager {
 		let userSearchField: string | string[] | undefined = getLDAPConditionalSetting<string>('LDAP_User_Search_Field');
 
 		if (userSearchField) {
-			userSearchField = userSearchField.replace(/\s/g, '').split(',');
+			userSearchField = userSearchField.replaceAll(/\s/g, '').split(',');
 		} else {
 			userSearchField = [];
 		}
@@ -442,7 +442,7 @@ export class LDAPManager {
 	private static getLdapEmails(ldapUser: ILDAPEntry, username?: string): string[] {
 		const emailAttributes = getLDAPConditionalSetting<string>('LDAP_Email_Field');
 		if (emailAttributes) {
-			const attributeList: string[] = emailAttributes.replace(/\s/g, '').split(',');
+			const attributeList: string[] = emailAttributes.replaceAll(/\s/g, '').split(',');
 			const key = attributeList.find((field) => ldapKeyExists(ldapUser, field));
 
 			const emails: string[] = [].concat(key ? ldapUser[key.trim()] : []);
@@ -471,7 +471,7 @@ export class LDAPManager {
 		}
 
 		text = limax(text, { replacement: '.' });
-		return text.replace(/[^0-9a-z-_.]/g, '');
+		return text.replaceAll(/[^0-9a-z-_.]/g, '');
 	}
 
 	private static slugifyUsername(ldapUser: ILDAPEntry, requestUsername: string): string {

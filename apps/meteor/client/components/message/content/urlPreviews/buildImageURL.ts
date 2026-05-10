@@ -7,7 +7,7 @@ export const buildImageURL = (url: string, imageUrl: string): string => {
 
 	const { origin } = new URL(url);
 	const imgURL = `${origin}/${imageUrl}`;
-	const normalizedUrl = imgURL.replace(/([^:]\/)\/+/gm, '$1');
+	const normalizedUrl = imgURL.replaceAll(/([^:]\/)\/+/gm, '$1');
 
 	return JSON.stringify(normalizedUrl);
 };

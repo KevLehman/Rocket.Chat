@@ -522,7 +522,7 @@ export class SlackImporter extends Importer {
 	}
 
 	makeSlackMessageId(channelId: string, ts: string, fileIndex?: string): string {
-		const base = `slack-${channelId}-${ts.replace(/\./g, '-')}`;
+		const base = `slack-${channelId}-${ts.replaceAll(/\./g, '-')}`;
 
 		if (fileIndex) {
 			return `${base}-file${fileIndex}`;
@@ -677,21 +677,21 @@ export class SlackImporter extends Importer {
 
 	convertSlackMessageToRocketChat(message: string): string {
 		if (message) {
-			message = message.replace(/<!everyone>/g, '@all');
-			message = message.replace(/<!channel>/g, '@all');
-			message = message.replace(/<!here>/g, '@here');
-			message = message.replace(/&gt;/g, '>');
-			message = message.replace(/&lt;/g, '<');
-			message = message.replace(/&amp;/g, '&');
-			message = message.replace(/:simple_smile:/g, ':smile:');
-			message = message.replace(/:memo:/g, ':pencil:');
-			message = message.replace(/:piggy:/g, ':pig:');
-			message = message.replace(/:uk:/g, ':gb:');
-			message = message.replace(/<(http[s]?:[^>|]*)>/g, '$1');
-			message = message.replace(/<(http[s]?:[^|]*)\|([^>]*)>/g, '[$2]($1)');
-			message = message.replace(/<#([^|]*)\|([^>]*)>/g, '#$2');
-			message = message.replace(/<@([^|]*)\|([^>]*)>/g, '@$1');
-			message = message.replace(/<@([^|>]*)>/g, '@$1');
+			message = message.replaceAll(/<!everyone>/g, '@all');
+			message = message.replaceAll(/<!channel>/g, '@all');
+			message = message.replaceAll(/<!here>/g, '@here');
+			message = message.replaceAll(/&gt;/g, '>');
+			message = message.replaceAll(/&lt;/g, '<');
+			message = message.replaceAll(/&amp;/g, '&');
+			message = message.replaceAll(/:simple_smile:/g, ':smile:');
+			message = message.replaceAll(/:memo:/g, ':pencil:');
+			message = message.replaceAll(/:piggy:/g, ':pig:');
+			message = message.replaceAll(/:uk:/g, ':gb:');
+			message = message.replaceAll(/<(http[s]?:[^>|]*)>/g, '$1');
+			message = message.replaceAll(/<(http[s]?:[^|]*)\|([^>]*)>/g, '[$2]($1)');
+			message = message.replaceAll(/<#([^|]*)\|([^>]*)>/g, '#$2');
+			message = message.replaceAll(/<@([^|]*)\|([^>]*)>/g, '@$1');
+			message = message.replaceAll(/<@([^|>]*)>/g, '@$1');
 		} else {
 			message = '';
 		}

@@ -165,7 +165,7 @@ export abstract class AutoTranslate {
 
 	tokenizeEmojis(message: IMessage): IMessage {
 		let count = message.tokens?.length || 0;
-		message.msg = message.msg.replace(/:[+\w\d]+:/g, (match) => {
+		message.msg = message.msg.replaceAll(/:[+\w\d]+:/g, (match) => {
 			const token = `<i class=notranslate>{${count++}}</i>`;
 			message.tokens?.push({
 				token,
@@ -322,7 +322,7 @@ export abstract class AutoTranslate {
 				for (const [index, attachment] of message.attachments?.entries() ?? []) {
 					if (attachment.text) {
 						// Removes the initial link `[ ](quoterl)` from quote message before translation
-						const translatedText = attachment?.text?.replace(/\[(.*?)\]\(.*?\)/g, '$1') || attachment?.text;
+						const translatedText = attachment?.text?.replaceAll(/\[(.*?)\]\(.*?\)/g, '$1') || attachment?.text;
 						const attachmentMessage = { ...attachment, text: translatedText };
 						const translations = await this._translateAttachmentDescriptions(attachmentMessage, targetLanguages);
 

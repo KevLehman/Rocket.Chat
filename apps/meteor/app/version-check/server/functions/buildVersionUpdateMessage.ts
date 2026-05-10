@@ -24,7 +24,7 @@ const cleanupOutdatedVersionUpdateBanners = async (): Promise<void> => {
 				if (!bannerId.startsWith('versionUpdate-')) {
 					return true;
 				}
-				const version = bannerId.replace('versionUpdate-', '').replace(/_/g, '.');
+				const version = bannerId.replace('versionUpdate-', '').replaceAll(/_/g, '.');
 				if (!semver.valid(version) || semver.lte(version, Info.version)) {
 					return false;
 				}
@@ -96,7 +96,7 @@ export const buildVersionUpdateMessage = async (
 			],
 			banners: [
 				{
-					id: `versionUpdate-${version.version}`.replace(/\./g, '_'),
+					id: `versionUpdate-${version.version}`.replaceAll(/\./g, '_'),
 					priority: 10,
 					title: 'Update_your_RocketChat',
 					text: 'New_version_available_(s)',

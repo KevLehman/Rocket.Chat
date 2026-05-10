@@ -94,7 +94,7 @@ function generateEmojiPicker(data) {
 		output += `\t${category}: [\n`;
 
 		for (let emoji in emojisByCategory[category]) {
-			output += `\t\t'${emojiList[emojisByCategory[category][emoji]].shortname.replace(/:/g, '')}',\n`;
+			output += `\t\t'${emojiList[emojisByCategory[category][emoji]].shortname.replaceAll(/:/g, '')}',\n`;
 		}
 
 		output += `\t],\n`;

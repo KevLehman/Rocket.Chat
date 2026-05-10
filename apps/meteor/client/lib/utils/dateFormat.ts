@@ -139,7 +139,7 @@ export const momentFormatToDateFns = (momentFormat: string): string => {
 
 	const flushLiteral = () => {
 		if (literal) {
-			out += `'${literal.replace(/'/g, "''")}'`;
+			out += `'${literal.replaceAll(/'/g, "''")}'`;
 			literal = '';
 		}
 	};

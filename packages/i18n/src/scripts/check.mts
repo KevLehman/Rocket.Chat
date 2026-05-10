@@ -337,7 +337,7 @@ const trimEndOfFile = describeTask('trim-eof', async function* () {
 
 	for (const language of languages) {
 		const content = await readContent(language);
-		const trimmedContent = content.replace(/\s+$/g, '');
+		const trimmedContent = content.replaceAll(/\s+$/g, '');
 
 		if (trimmedContent.length === content.length) continue;
 

@@ -71,25 +71,25 @@ const parseNotEscaped = (message, { supportSchemesForLink, headers, rootUrl }) =
 
 	if (headers) {
 		// Support # Text for h1
-		msg = msg.replace(
+		msg = msg.replaceAll(
 			/^# (([\S\w\d-_\/\*\.,\\][ \u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]?)+)/gm,
 			'<h1>$1</h1>',
 		);
 
 		// Support # Text for h2
-		msg = msg.replace(
+		msg = msg.replaceAll(
 			/^## (([\S\w\d-_\/\*\.,\\][ \u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]?)+)/gm,
 			'<h2>$1</h2>',
 		);
 
 		// Support # Text for h3
-		msg = msg.replace(
+		msg = msg.replaceAll(
 			/^### (([\S\w\d-_\/\*\.,\\][ \u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]?)+)/gm,
 			'<h3>$1</h3>',
 		);
 
 		// Support # Text for h4
-		msg = msg.replace(
+		msg = msg.replaceAll(
 			/^#### (([\S\w\d-_\/\*\.,\\][ \u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]?)+)/gm,
 			'<h4>$1</h4>',
 		);
@@ -108,26 +108,26 @@ const parseNotEscaped = (message, { supportSchemesForLink, headers, rootUrl }) =
 	// >>>
 	// Text
 	// <<<
-	msg = msg.replace(
+	msg = msg.replaceAll(
 		/(?:&gt;){3}\n+([\s\S]*?)\n+(?:&lt;){3}/g,
 		'<blockquote class="background-transparent-darker-before"><span class="copyonly">&gt;&gt;&gt;</span>$1<span class="copyonly">&lt;&lt;&lt;</span></blockquote>',
 	);
 
 	// Support >Text for quote
-	msg = msg.replace(
+	msg = msg.replaceAll(
 		/^&gt;(.*)$/gm,
 		'<blockquote class="background-transparent-darker-before"><span class="copyonly">&gt;</span>$1</blockquote>',
 	);
 
 	// Remove white-space around blockquote (prevent <br>). Because blockquote is block element.
-	msg = msg.replace(
+	msg = msg.replaceAll(
 		/\s*<blockquote class="background-transparent-darker-before">/gm,
 		'<blockquote class="background-transparent-darker-before">',
 	);
-	msg = msg.replace(/<\/blockquote>\s*/gm, '</blockquote>');
+	msg = msg.replaceAll(/<\/blockquote>\s*/gm, '</blockquote>');
 
 	// Remove new-line between blockquotes.
-	msg = msg.replace(/<\/blockquote>\n<blockquote/gm, '</blockquote><blockquote');
+	msg = msg.replaceAll(/<\/blockquote>\n<blockquote/gm, '</blockquote><blockquote');
 
 	// Support ![alt text](http://image url)
 	msg = msg.replace(new RegExp(`!\\[([^\\]]+)\\]\\(((?:${schemes}):\\/\\/[^\\s]+)\\)`, 'gm'), (match, title, url) => {
@@ -156,7 +156,7 @@ const parseNotEscaped = (message, { supportSchemesForLink, headers, rootUrl }) =
 			return match;
 		}
 		const target = url.indexOf(rootUrl) === 0 ? '' : '_blank';
-		title = title.replace(/&amp;/g, '&');
+		title = title.replaceAll(/&amp;/g, '&');
 
 		const escapedUrl = encodeURI(url);
 

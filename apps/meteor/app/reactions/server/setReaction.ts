@@ -100,7 +100,7 @@ export async function executeSetReaction(
 	shouldReact?: boolean,
 ) {
 	// Check if the emoji is valid before proceeding
-	const reactionWithoutColons = reaction.replace(/:/g, '');
+	const reactionWithoutColons = reaction.replaceAll(/:/g, '');
 	reaction = `:${reactionWithoutColons}:`;
 
 	if (!emoji.list[reaction] && (await EmojiCustom.countByNameOrAlias(reactionWithoutColons)) === 0) {

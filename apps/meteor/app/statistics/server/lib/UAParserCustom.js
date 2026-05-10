@@ -38,11 +38,11 @@ export const UAParserMobile = {
 			list: ['version', 'bundle'],
 			get: (prop, value) => {
 				if (prop === 'bundle') {
-					return value.replace(/([()])/g, '');
+					return value.replaceAll(/([()])/g, '');
 				}
 
 				if (prop === 'version') {
-					return value.replace(/^v/g, '');
+					return value.replaceAll(/^v/g, '');
 				}
 
 				return value;

@@ -29,7 +29,7 @@ export class AppEnvironmentalVariableBridge extends EnvironmentalVariableBridge 
 		/**
 		 * Replace the letter `-` with `_` since environment variable name doesn't support it
 		 */
-		const appVariablePrefix = `RC_APPS_${appId.toUpperCase().replace(/-/g, '_')}`;
+		const appVariablePrefix = `RC_APPS_${appId.toUpperCase().replaceAll(/-/g, '_')}`;
 		return envVarName.toUpperCase().startsWith(appVariablePrefix);
 	}
 

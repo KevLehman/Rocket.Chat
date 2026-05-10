@@ -837,7 +837,7 @@ export default class SlackAdapter {
 	}
 
 	createSlackMessageId(ts, channelId) {
-		return `slack${channelId ? `-${channelId}` : ''}-${ts.replace(/\./g, '-')}`;
+		return `slack${channelId ? `-${channelId}` : ''}-${ts.replaceAll(/\./g, '-')}`;
 	}
 
 	async postMessage(slackChannel, rocketMessage) {

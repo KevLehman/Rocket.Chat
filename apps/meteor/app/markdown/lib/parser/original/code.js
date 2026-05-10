@@ -9,7 +9,7 @@ import hljs, { register } from '../../hljs';
 
 const inlinecode = (message) => {
 	// Support `text`
-	message.html = message.html.replace(/\`([^`\r\n]+)\`([<_*~]|\B|\b|$)/gm, (match, p1, p2) =>
+	message.html = message.html.replaceAll(/\`([^`\r\n]+)\`([<_*~]|\B|\b|$)/gm, (match, p1, p2) =>
 		addAsToken(
 			message,
 			`<span class=\"copyonly\">\`</span><span><code class=\"code-colors inline\">${p1}</code></span><span class=\"copyonly\">\`</span>${p2}`,

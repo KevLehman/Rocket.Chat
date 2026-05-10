@@ -82,7 +82,7 @@ const withDDPOverREST = (_send: (this: Meteor.IMeteorConnection, message: Meteor
 			message: DDPCommon.stringifyDDP({ ...message }),
 		};
 
-		const method = encodeURIComponent(message.method.replace(/\//g, ':'));
+		const method = encodeURIComponent(message.method.replaceAll(/\//g, ':'));
 
 		sdk.rest
 			.post(`/v1/${endpoint}/${method}`, restParams)

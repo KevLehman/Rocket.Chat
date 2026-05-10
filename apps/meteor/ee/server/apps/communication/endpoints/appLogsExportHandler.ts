@@ -107,7 +107,7 @@ export const registerAppLogsExportHandler = ({ api, _manager, _orch }: AppsRestA
 
 			let fileContent: Buffer;
 			let filename: string;
-			const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+			const timestamp = new Date().toISOString().replaceAll(/[:.]/g, '-');
 
 			if (this.queryParams.type === 'json') {
 				fileContent = Buffer.from(JSON.stringify(result, null, 2), 'utf8');

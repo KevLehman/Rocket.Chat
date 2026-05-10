@@ -20,7 +20,7 @@ const REGEX = {
 };
 
 const escapeHtml = (text: string): string =>
-	text.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[c] || c);
+	text.replaceAll(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[c] || c);
 
 const stripHtml = (html: string, keep: string[] = []): string => sanitizeHtml(html, { allowedTags: keep.includes('a') ? ['a'] : [] });
 
@@ -52,7 +52,7 @@ const replaceMentions = (message: string, mentions: Array<{ mention: string; rea
 	let remaining = message;
 
 	for (const { mention, realName } of mentions) {
-		const regex = new RegExp(`(?<!\\w)${realName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?!\\w)`);
+		const regex = new RegExp(`(?<!\\w)${realName.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?!\\w)`);
 		const position = remaining.search(regex);
 
 		if (position !== -1) {
@@ -154,7 +154,7 @@ export const toExternalMessageFormat = async ({
 	result = await replaceWithMentionPills(result, REGEX.externalUsers, (match) => createMentionHtml(match));
 	result = await replaceWithMentionPills(result, REGEX.internalUsers, (match) => createMentionHtml(`${match}:${homeServerDomain}`));
 
-	return (await marked.parse(result.trim())).replace(/\s+/g, ' ').trim();
+	return (await marked.parse(result.trim())).replaceAll(/\s+/g, ' ').trim();
 };
 
 export const toExternalQuoteMessageFormat = async ({

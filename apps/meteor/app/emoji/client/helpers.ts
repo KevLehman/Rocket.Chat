@@ -147,7 +147,7 @@ export const getEmojisBySearchTerm = (
 	setRecentEmojis: (emojis: string[]) => void,
 ) => {
 	const emojis = [];
-	const searchRegExp = new RegExp(escapeRegExp(searchTerm.replace(/:/g, '')), 'i');
+	const searchRegExp = new RegExp(escapeRegExp(searchTerm.replaceAll(/:/g, '')), 'i');
 
 	for (let current in emoji.list) {
 		if (!emoji.list.hasOwnProperty(current)) {
@@ -158,8 +158,8 @@ export const getEmojisBySearchTerm = (
 			const emojiObject = emoji.list[current];
 			const { emojiPackage, shortnames = [] } = emojiObject;
 			let tone = '';
-			current = current.replace(/:/g, '');
-			const alias = shortnames[0] !== undefined ? shortnames[0].replace(/:/g, '') : shortnames[0];
+			current = current.replaceAll(/:/g, '');
+			const alias = shortnames[0] !== undefined ? shortnames[0].replaceAll(/:/g, '') : shortnames[0];
 
 			if (actualTone > 0 && emoji.packages[emojiPackage].toneList.hasOwnProperty(current)) {
 				tone = `_tone${actualTone}`;
@@ -170,7 +170,7 @@ export const getEmojisBySearchTerm = (
 			for (const key in emoji.packages[emojiPackage].emojisByCategory) {
 				if (emoji.packages[emojiPackage].emojisByCategory.hasOwnProperty(key)) {
 					const contents = emoji.packages[emojiPackage].emojisByCategory[key];
-					const searchValArray = alias !== undefined ? alias.replace(/:/g, '').split('_') : alias;
+					const searchValArray = alias !== undefined ? alias.replaceAll(/:/g, '').split('_') : alias;
 					if (contents.indexOf(current) !== -1 || searchValArray?.includes(searchTerm)) {
 						emojiFound = true;
 						break;
@@ -195,7 +195,7 @@ export const getEmojisBySearchTerm = (
 };
 
 export const removeFromRecent = (emoji: string, recentEmojis: string[], setRecentEmojis?: (emojis: string[]) => void) => {
-	const _emoji = emoji.replace(/(^:|:$)/g, '');
+	const _emoji = emoji.replaceAll(/(^:|:$)/g, '');
 	const pos = recentEmojis.indexOf(_emoji as never);
 
 	if (pos === -1) {
