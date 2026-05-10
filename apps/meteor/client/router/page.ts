@@ -72,7 +72,7 @@ class Route {
 		for (let i = 1, len = m.length; i < len; ++i) {
 			const key = keys[i - 1];
 			const val = decodeURLEncodedURIComponent(m[i]);
-			if (val !== undefined || !Object.prototype.hasOwnProperty.call(params, key.name)) {
+			if (val !== undefined || !Object.hasOwn(params, key.name)) {
 				params[key.name] = val;
 			}
 		}

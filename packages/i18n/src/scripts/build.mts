@@ -1,7 +1,6 @@
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { argv, exit } from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import { distDirectory, languageFromBasename, resourceBasename, resourcesDirectory } from './common.mts';
 import { normalizeI18nInterpolations } from './normalize.mts';
@@ -90,13 +89,9 @@ export default languages;`,
 	);
 }
 
-if (import.meta.url.startsWith('file:')) {
-	const modulePath = fileURLToPath(import.meta.url);
-
-	if (argv[1] === modulePath) {
-		build().catch((error) => {
-			console.error(error);
-			exit(1);
-		});
-	}
+if (import.meta.filename && argv[1] === import.meta.filename) {
+	build().catch((error) => {
+		console.error(error);
+		exit(1);
+	});
 }

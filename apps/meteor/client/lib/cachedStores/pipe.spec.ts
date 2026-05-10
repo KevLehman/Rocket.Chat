@@ -90,7 +90,7 @@ describe('pipe', () => {
 	it('should sort the array by a date field in ascending order', () => {
 		const result = pipe<ITestData>()
 			.sortByField('date', 1)
-			.apply([...sampleData].sort(() => Math.random() - 0.5));
+			.apply(sampleData.toSorted(() => Math.random() - 0.5));
 		expect(result).toEqual(sampleData);
 	});
 

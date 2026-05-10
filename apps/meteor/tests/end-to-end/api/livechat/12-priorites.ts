@@ -904,7 +904,7 @@ import { generateRandomSLAData } from '../../../e2e/utils/omnichannel/sla';
 			const origInquiries = await fetchAllInquiries(departmentWithAgent.agent.credentials, departmentWithAgent.department._id);
 			expect(origInquiries.length).to.be.greaterThanOrEqual(omniRooms.length);
 
-			const expectedSortedInquiries: ILivechatInquiryRecord[] = JSON.parse(JSON.stringify(origInquiries));
+			const expectedSortedInquiries: ILivechatInquiryRecord[] = structuredClone(origInquiries);
 
 			expectedSortedInquiries.sort(sortByPriority);
 

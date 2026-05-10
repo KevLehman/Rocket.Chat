@@ -196,7 +196,7 @@ export const onUserActivity = (username, activities) => {
 };
 
 export const onMessage = async (originalMessage) => {
-	let message = JSON.parse(JSON.stringify(originalMessage));
+	let message = structuredClone(originalMessage);
 
 	if (message.ts instanceof Date) {
 		message.ts = message.ts.toISOString();

@@ -76,7 +76,7 @@ export function pipe<D>(
 
 			return pipe<D>(
 				initialData,
-				merge((arr: D[]) => [...arr].sort(sort(fieldName, direction, fallback)), acc),
+				merge((arr: D[]) => arr.toSorted(sort(fieldName, direction, fallback)), acc),
 			);
 		},
 

@@ -11,7 +11,7 @@ if (components) {
 	}
 
 	for (const key in components) {
-		if (Object.prototype.hasOwnProperty.call(components, key)) {
+		if (Object.hasOwn(components, key)) {
 			const uri = `#/components/schemas/${key}`;
 			ajv.addSchema(components[key], uri);
 			ajvQuery.addSchema(components[key], uri);

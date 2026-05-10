@@ -49,7 +49,7 @@ export async function setReaction(room: IRoom, user: IUser, message: IMessage, r
 
 	let isReacted;
 	if (userAlreadyReacted) {
-		const oldMessage = JSON.parse(JSON.stringify(message));
+		const oldMessage = structuredClone(message);
 		removeUserReaction(message, reaction, user.username as string);
 		if (Object.keys(message.reactions || {}).length === 0) {
 			delete message.reactions;

@@ -89,7 +89,7 @@ export class OrderedDict<TKey extends string, TValue> {
 	}
 
 	has(key: TKey): boolean {
-		return Object.prototype.hasOwnProperty.call(this._dict, this._k(key));
+		return Object.hasOwn(this._dict, this._k(key));
 	}
 
 	forEach(iter: (value: TValue, key: TKey, index: number) => void | typeof OrderedDict.BREAK, context?: null): void;

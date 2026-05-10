@@ -59,7 +59,7 @@ export const buildVersionUpdateMessage = async (
 		return;
 	}
 
-	const sortedVersions = [...versions].sort((a, b) => semver.rcompare(a.version, b.version));
+	const sortedVersions = versions.toSorted((a, b) => semver.rcompare(a.version, b.version));
 
 	await cleanupOutdatedVersionUpdateBanners();
 
