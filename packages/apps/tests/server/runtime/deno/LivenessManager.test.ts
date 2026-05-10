@@ -1,7 +1,7 @@
-import type { ChildProcess } from 'child_process';
+import type { ChildProcess } from 'node:child_process';
 import * as assert from 'node:assert';
 import { describe, it, beforeEach, afterEach, mock, type Mock } from 'node:test';
-import { EventEmitter } from 'stream';
+import { EventEmitter } from 'node:stream';
 
 import debugFactory from 'debug';
 

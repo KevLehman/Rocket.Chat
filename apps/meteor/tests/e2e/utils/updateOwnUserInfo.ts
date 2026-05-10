@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import type { APIResponse } from '@playwright/test';
 import type { UsersUpdateOwnBasicInfoParamsPOST } from '@rocket.chat/rest-typings';

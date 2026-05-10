@@ -1,9 +1,9 @@
-import { exec } from 'child_process';
-import os from 'os';
-import util from 'util';
-import path from 'path';
-import fs from 'fs';
-import https from 'https';
+import { exec } from 'node:child_process';
+import os from 'node:os';
+import util from 'node:util';
+import path from 'node:path';
+import fs from 'node:fs';
+import https from 'node:https';
 
 const execAsync = util.promisify(exec);
 

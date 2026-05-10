@@ -54,7 +54,7 @@ function wrapAppCode(code: string): (require: (module: string) => unknown) => Pr
 	return new Function(
 		'require',
 		`
-        const { Buffer } = require('buffer');
+        const { Buffer } = require('node:buffer');
         const exports = {};
         const module = { exports };
         const _error = console.error.bind(console);

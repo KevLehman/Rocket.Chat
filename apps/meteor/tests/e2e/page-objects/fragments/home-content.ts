@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
 import { resolve, join, relative } from 'node:path';
 
 import type { Locator, Page } from '@playwright/test';

@@ -1,6 +1,6 @@
-import type { IncomingMessage, RequestOptions, ServerResponse } from 'http';
-import http from 'http';
-import url from 'url';
+import type { IncomingMessage, RequestOptions, ServerResponse } from 'node:http';
+import http from 'node:http';
+import url from 'node:url';
 
 import type polka from 'polka';
 

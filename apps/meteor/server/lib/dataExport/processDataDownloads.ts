@@ -1,5 +1,5 @@
-import { createWriteStream } from 'fs';
-import { access, mkdir, rm, writeFile } from 'fs/promises';
+import { createWriteStream } from 'node:fs';
+import { access, mkdir, rm, writeFile } from 'node:fs/promises';
 
 import type { IExportOperation, IUser, RoomType } from '@rocket.chat/core-typings';
 import { Avatars, ExportOperations, UserDataFiles, Subscriptions } from '@rocket.chat/models';

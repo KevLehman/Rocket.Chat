@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import { MeteorService, Presence, ServiceClass } from '@rocket.chat/core-services';
 import { InstanceStatus } from '@rocket.chat/instance-status';

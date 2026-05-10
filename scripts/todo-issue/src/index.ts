@@ -23,7 +23,7 @@ function loadConfig(): Config {
 }
 
 function execGitDiff(args: string[]): string {
-	const { spawnSync } = require('child_process');
+	const { spawnSync } = require('node:child_process');
 	const result = spawnSync('git', ['diff', '--no-index', ...args], {
 		encoding: 'utf-8',
 		maxBuffer: 50 * 1024 * 1024,

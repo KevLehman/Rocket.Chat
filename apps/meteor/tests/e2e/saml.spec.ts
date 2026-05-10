@@ -1,5 +1,5 @@
-import child_process from 'child_process';
-import path from 'path';
+import child_process from 'node:child_process';
+import path from 'node:path';
 
 import { faker } from '@faker-js/faker';
 import type { Page } from '@playwright/test';

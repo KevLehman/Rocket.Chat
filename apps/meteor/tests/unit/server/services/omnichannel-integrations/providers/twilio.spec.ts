@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import { expect } from 'chai';
 import proxyquire from 'proxyquire';

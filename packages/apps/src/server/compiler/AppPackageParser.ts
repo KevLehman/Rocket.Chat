@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 
 import type { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata/IAppInfo';
 import { ENGINE_VERSION } from '@rocket.chat/apps-engine/definition/version';

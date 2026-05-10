@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 
 import { Account, Presence, MeteorService, MeteorError } from '@rocket.chat/core-services';
 import { UserStatus } from '@rocket.chat/core-typings';

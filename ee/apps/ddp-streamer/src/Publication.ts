@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 
 import type { Client } from './Client';
 import type { Server } from './Server';

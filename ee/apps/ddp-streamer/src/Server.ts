@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
 
 import type { IServiceMetrics } from '@rocket.chat/core-services';
 import { MeteorService, isMeteorError, MeteorError } from '@rocket.chat/core-services';

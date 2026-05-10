@@ -1,5 +1,5 @@
-import tls from 'tls';
-import { PassThrough } from 'stream';
+import tls from 'node:tls';
+import { PassThrough } from 'node:stream';
 
 import { Email } from 'meteor/email';
 import { Mongo } from 'meteor/mongo';
