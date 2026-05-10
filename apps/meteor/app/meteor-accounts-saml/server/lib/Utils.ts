@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import zlib from 'zlib';
+import { EventEmitter } from 'node:events';
+import zlib from 'node:zlib';
 
 import type { Logger } from '@rocket.chat/logger';
 
@@ -206,7 +206,7 @@ export class SAMLUtils {
 		return cert
 			.replace(/-+BEGIN CERTIFICATE-+\r?\n?/, '')
 			.replace(/-+END CERTIFICATE-+\r?\n?/, '')
-			.replace(/\r\n/g, '\n')
+			.replaceAll(/\r\n/g, '\n')
 			.trim();
 	}
 

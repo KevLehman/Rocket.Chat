@@ -423,7 +423,7 @@ export class LivechatVisitorsRaw extends BaseRaw<ILivechatVisitor> implements IL
 
 		const savePhone = ([] as string[])
 			.concat(phones)
-			.filter((phone) => phone?.trim().replace(/[^\d]/g, ''))
+			.filter((phone) => phone?.trim().replaceAll(/[^\d]/g, ''))
 			.map((phone) => ({ phoneNumber: phone }));
 
 		if (!saveEmail.length && !savePhone.length) {

@@ -192,7 +192,7 @@ export const ImageGallery = ({ images, onClose, loadMore }: { images: IUpload[];
 							onReachBeginning={loadMore}
 							initialSlide={images.length - 1}
 						>
-							{[...images].reverse().map(({ _id, path, url, description }) => (
+							{images.toReversed().map(({ _id, path, url, description }) => (
 								<SwiperSlide key={_id}>
 									<div className='swiper-zoom-container'>
 										{/* eslint-disable-next-line

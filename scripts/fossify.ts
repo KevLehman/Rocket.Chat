@@ -1,5 +1,5 @@
-import readline from 'readline';
-import fs from 'fs/promises';
+import readline from 'node:readline';
+import fs from 'node:fs/promises';
 
 const removeOptions = { maxRetries: 3, recursive: true };
 

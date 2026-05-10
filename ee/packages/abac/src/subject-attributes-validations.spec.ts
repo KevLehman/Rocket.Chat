@@ -348,7 +348,7 @@ describe('Subject Attributes validation', () => {
 
 			beforeAll(() => {
 				original = [{ key: 'dept', values: ['eng', 'sales'] }] as IAbacAttributeDefinition[];
-				clone = JSON.parse(JSON.stringify(original));
+				clone = structuredClone(original);
 			});
 
 			beforeEach(async () => {

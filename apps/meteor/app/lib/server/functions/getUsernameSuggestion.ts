@@ -5,7 +5,7 @@ import limax from 'limax';
 import { settings } from '../../../settings/server';
 
 function slug(text: string): string {
-	return limax(text, { replacement: '.' }).replace(/[^0-9a-z-_.]/g, '');
+	return limax(text, { replacement: '.' }).replaceAll(/[^0-9a-z-_.]/g, '');
 }
 
 async function usernameIsAvailable(username: string): Promise<boolean> {

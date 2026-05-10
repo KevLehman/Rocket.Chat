@@ -36,12 +36,12 @@ export class FederationKeysRaw extends BaseRaw<FederationKey> implements IFedera
 
 		await this.insertOne({
 			type: 'private',
-			key: key.exportKey('pkcs8-private-pem').replace(/\n|\r/g, ''),
+			key: key.exportKey('pkcs8-private-pem').replaceAll(/\n|\r/g, ''),
 		});
 
 		await this.insertOne({
 			type: 'public',
-			key: key.exportKey('pkcs8-public-pem').replace(/\n|\r/g, ''),
+			key: key.exportKey('pkcs8-public-pem').replaceAll(/\n|\r/g, ''),
 		});
 
 		return {

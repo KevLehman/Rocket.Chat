@@ -7,7 +7,7 @@ Package.describe({
 
 const additionalPackages = {};
 
-const fs = Npm.require('fs');
+const fs = Npm.require('node:fs');
 
 Package.onUse(function (api) {
 	const workingDir = process.env.PWD || '.';

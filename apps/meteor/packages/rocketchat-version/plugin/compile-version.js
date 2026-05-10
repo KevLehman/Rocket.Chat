@@ -1,9 +1,9 @@
-import { exec } from 'child_process';
-import os from 'os';
-import util from 'util';
-import path from 'path';
-import fs from 'fs';
-import https from 'https';
+import { exec } from 'node:child_process';
+import os from 'node:os';
+import util from 'node:util';
+import path from 'node:path';
+import fs from 'node:fs';
+import https from 'node:https';
 
 const execAsync = util.promisify(exec);
 
@@ -82,7 +82,7 @@ class VersionCompiler {
 				cpus: os.cpus().length,
 			};
 
-			output.marketplaceApiVersion = require('@rocket.chat/apps-engine/package.json').version.replace(/^[^0-9]/g, '');
+			output.marketplaceApiVersion = require('@rocket.chat/apps-engine/package.json').version.replaceAll(/^[^0-9]/g, '');
 			const minimumClientVersions =
 				JSON.parse(fs.readFileSync(path.resolve(process.cwd(), './package.json'), { encoding: 'utf8' }))?.rocketchat
 					?.minimumClientVersions || {};

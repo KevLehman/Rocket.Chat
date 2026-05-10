@@ -108,7 +108,7 @@ export class Router implements RouterContextValue {
 		path += idOrPathDef.replace(this.pathRegExp, (_key) => {
 			const firstRegexpChar = _key.indexOf('(');
 			let key = _key.substring(1, firstRegexpChar > 0 ? firstRegexpChar : undefined);
-			key = key.replace(/[\+\*\?]+/g, '');
+			key = key.replaceAll(/[\+\*\?]+/g, '');
 
 			if (params[key]) {
 				return this.encodeParam(`${params[key]}`);
@@ -117,7 +117,7 @@ export class Router implements RouterContextValue {
 			return '';
 		});
 
-		path = path.replace(/\/\/+/g, '/');
+		path = path.replaceAll(/\/\/+/g, '/');
 
 		path = path.match(/^\/{1}$/) ? path : path.replace(/\/$/, '');
 
@@ -128,7 +128,7 @@ export class Router implements RouterContextValue {
 			path += `?${strQueryParams}`;
 		}
 
-		path = path.replace(/\/\/+/g, '/');
+		path = path.replaceAll(/\/\/+/g, '/');
 		return path;
 	}
 

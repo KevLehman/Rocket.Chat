@@ -3,7 +3,7 @@
 // before using this script make sure to run: npm i --no-save node-sprite-generator
 
 // node --experimental-modules generateEmojiIndex.mjs
-import fs from 'fs';
+import fs from 'node:fs';
 import nsg from 'node-sprite-generator';
 import _ from 'underscore';
 import gm from 'gm'; // lgtm[js/unused-local-variable]
@@ -94,7 +94,7 @@ function generateEmojiPicker(data) {
 		output += `\t${category}: [\n`;
 
 		for (let emoji in emojisByCategory[category]) {
-			output += `\t\t'${emojiList[emojisByCategory[category][emoji]].shortname.replace(/:/g, '')}',\n`;
+			output += `\t\t'${emojiList[emojisByCategory[category][emoji]].shortname.replaceAll(/:/g, '')}',\n`;
 		}
 
 		output += `\t],\n`;

@@ -1,4 +1,4 @@
-import os from 'os';
+import os from 'node:os';
 
 import { api, getConnection, getTrashCollection } from '@rocket.chat/core-services';
 import { InstanceStatus } from '@rocket.chat/instance-status';

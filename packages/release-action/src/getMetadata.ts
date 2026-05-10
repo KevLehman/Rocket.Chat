@@ -1,6 +1,6 @@
-import { readFile } from 'fs/promises';
-import { EOL } from 'os';
-import path from 'path';
+import { readFile } from 'node:fs/promises';
+import { EOL } from 'node:os';
+import path from 'node:path';
 
 import { readPackageJson } from './utils';
 
@@ -13,7 +13,7 @@ export async function getMongoVersion(cwd: string) {
 			return [];
 		}
 
-		return mongoMatch[1].replace(/["'\\ ]/g, '').split(',');
+		return mongoMatch[1].replaceAll(/["'\\ ]/g, '').split(',');
 	} catch (e) {
 		console.error(e);
 	}

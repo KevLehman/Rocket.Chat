@@ -38,7 +38,7 @@ class MessageSearchQueryParser {
 	private consumeFrom(text: string) {
 		const from: string[] = [];
 
-		return text.replace(/from:([a-z0-9.\-_]+)/gi, (_, username) => {
+		return text.replaceAll(/from:([a-z0-9.\-_]+)/gi, (_, username) => {
 			if (username === 'me' && this.user?.username && !from.includes(this.user.username)) {
 				username = this.user.username;
 			}
@@ -56,7 +56,7 @@ class MessageSearchQueryParser {
 	private consumeMention(text: string) {
 		const mentions: string[] = [];
 
-		return text.replace(/mention:([a-z0-9.\-_]+)/gi, (_: string, username: string) => {
+		return text.replaceAll(/mention:([a-z0-9.\-_]+)/gi, (_: string, username: string) => {
 			mentions.push(username);
 
 			this.query['mentions.username'] = {
@@ -72,7 +72,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages that are starred by the current user.
 	 */
 	private consumeHasStar(text: string) {
-		return text.replace(/has:star/g, () => {
+		return text.replaceAll(/has:star/g, () => {
 			if (this.user?._id) {
 				this.query['starred._id'] = this.user._id;
 			}
@@ -84,7 +84,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages that have an url.
 	 */
 	private consumeHasUrl(text: string) {
-		return text.replace(/has:url|has:link/g, () => {
+		return text.replaceAll(/has:url|has:link/g, () => {
 			this.query['urls.0'] = {
 				$exists: true,
 			};
@@ -96,7 +96,7 @@ class MessageSearchQueryParser {
 	 * Filter on pinned messages.
 	 */
 	private consumeIsPinned(text: string) {
-		return text.replace(/is:pinned|has:pin/g, () => {
+		return text.replaceAll(/is:pinned|has:pin/g, () => {
 			this.query.pinned = true;
 			return '';
 		});
@@ -106,7 +106,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages which have a location attached.
 	 */
 	private consumeHasLocation(text: string) {
-		return text.replace(/has:location|has:map/g, () => {
+		return text.replaceAll(/has:location|has:map/g, () => {
 			this.query.location = {
 				$exists: true,
 			};
@@ -118,7 +118,7 @@ class MessageSearchQueryParser {
 	 * Filter image tags
 	 */
 	private consumeLabel(text: string) {
-		return text.replace(/label:*"([^"]+)"|label:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
+		return text.replaceAll(/label:*"([^"]+)"|label:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
 			const tag = (quoted ?? unquoted)?.trim();
 			if (!tag || typeof tag !== 'string') return '';
 
@@ -135,7 +135,7 @@ class MessageSearchQueryParser {
 	 * Filter on description of messages.
 	 */
 	private consumeFileDescription(text: string) {
-		return text.replace(/file-desc:"([^"]+)"|file-desc:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
+		return text.replaceAll(/file-desc:"([^"]+)"|file-desc:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
 			const tag = (quoted ?? unquoted)?.trim();
 			if (!tag || typeof tag !== 'string') return '';
 
@@ -152,7 +152,7 @@ class MessageSearchQueryParser {
 	 * Filter on title of messages.
 	 */
 	private consumeFileTitle(text: string) {
-		return text.replace(/file-title:"([^"]+)"|file-title:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
+		return text.replaceAll(/file-title:"([^"]+)"|file-title:"?([^\s"]+[^"]?)"?/gu, (_match, quoted, unquoted) => {
 			const tag = (quoted ?? unquoted)?.trim();
 			if (!tag || typeof tag !== 'string') return '';
 
@@ -169,7 +169,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages that have been sent before a date.
 	 */
 	private consumeBefore(text: string) {
-		return text.replace(/before:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
+		return text.replaceAll(/before:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
 			const beforeDate = new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
 			beforeDate.setUTCHours(beforeDate.getUTCHours() + beforeDate.getTimezoneOffset() / 60 + (this.user?.utcOffset ?? 0));
 
@@ -186,7 +186,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages that have been sent after a date.
 	 */
 	private consumeAfter(text: string) {
-		return text.replace(/after:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
+		return text.replaceAll(/after:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
 			const afterDate = new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10) + 1);
 			afterDate.setUTCHours(afterDate.getUTCHours() + afterDate.getTimezoneOffset() / 60 + (this.user?.utcOffset ?? 0));
 
@@ -203,7 +203,7 @@ class MessageSearchQueryParser {
 	 * Filter on messages that have been sent on a date.
 	 */
 	private consumeOn(text: string) {
-		return text.replace(/on:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
+		return text.replaceAll(/on:(\d{1,2})[\/\.-](\d{1,2})[\/\.-](\d{4})/g, (_: string, day: string, month: string, year: string) => {
 			const date = new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
 			date.setUTCHours(date.getUTCHours() + date.getTimezoneOffset() / 60 + (this.user?.utcOffset ?? 0));
 			const dayAfter = new Date(date);
@@ -222,7 +222,7 @@ class MessageSearchQueryParser {
 	 * Sort by timestamp.
 	 */
 	consumeOrder(text: string) {
-		return text.replace(/(?:order|sort):(asc|ascend|ascending|desc|descend|descending)/g, (_: string, direction: string) => {
+		return text.replaceAll(/(?:order|sort):(asc|ascend|ascending|desc|descend|descending)/g, (_: string, direction: string) => {
 			if (direction.startsWith('asc')) {
 				this.options.sort = {
 					...(typeof this.options.sort === 'object' && !Array.isArray(this.options.sort) ? this.options.sort : {}),
@@ -242,7 +242,7 @@ class MessageSearchQueryParser {
 	 * Query in message text
 	 */
 	private consumeMessageText(text: string) {
-		text = text.trim().replace(/\s\s/g, ' ');
+		text = text.trim().replaceAll(/\s\s/g, ' ');
 
 		if (text === '') {
 			return text;

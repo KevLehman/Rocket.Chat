@@ -12,18 +12,18 @@ const foregroundColors = {
 
 export const ansispan = (str: string): string => {
 	str = str
-		.replace(/\s/g, '&nbsp;')
-		.replace(/(\\n|\n)/g, '<br>')
-		.replace(/>/g, '&gt;')
-		.replace(/</g, '&lt;')
+		.replaceAll(/\s/g, '&nbsp;')
+		.replaceAll(/(\\n|\n)/g, '<br>')
+		.replaceAll(/>/g, '&gt;')
+		.replaceAll(/</g, '&lt;')
 		.replace(/(.\d{8}-\d\d:\d\d:\d\d\.\d\d\d\(?.{0,2}\)?)/, '<span>$1</span>')
-		.replace(/\x1b\[1m/g, '<strong>')
-		.replace(/\x1b\[22m/g, '</strong>')
-		.replace(/\x1b\[3m/g, '<em>')
-		.replace(/\x1b\[23m/g, '</em>')
-		.replace(/\x1b\[m/g, '</span>')
-		.replace(/\x1b\[0m/g, '</span>')
-		.replace(/\x1b\[39m/g, '</span>');
+		.replaceAll(/\x1b\[1m/g, '<strong>')
+		.replaceAll(/\x1b\[22m/g, '</strong>')
+		.replaceAll(/\x1b\[3m/g, '<em>')
+		.replaceAll(/\x1b\[23m/g, '</em>')
+		.replaceAll(/\x1b\[m/g, '</span>')
+		.replaceAll(/\x1b\[0m/g, '</span>')
+		.replaceAll(/\x1b\[39m/g, '</span>');
 	return Object.entries(foregroundColors).reduce((str, [ansiCode, color]) => {
 		const span = `<span style="color: ${color}">`;
 		return str.replace(new RegExp(`\\033\\[${ansiCode}m`, 'g'), span).replace(new RegExp(`\\033\\[0;${ansiCode}m`, 'g'), span);

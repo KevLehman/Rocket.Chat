@@ -308,7 +308,7 @@ export abstract class IntegrationScriptEngine<IsIncoming extends boolean> {
 				historyId,
 				step: `execute-script-error-running-${method}`,
 				error: true,
-				errorStack: err.stack.replace(/^/gm, '  '),
+				errorStack: err.stack.replaceAll(/^/gm, '  '),
 			});
 			this.logger.error({
 				msg: 'Error running Script in the Integration',

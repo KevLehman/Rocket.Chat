@@ -5,7 +5,7 @@ export function utf8Encode(input: string) {
 	// with arbitrary Unicode), but the following line seems
 	// problematic:
 	//
-	// string = string.replace(/\r\n/g,"\n");
+	// string = string.replaceAll(/\r\n/g,"\n");
 	let utftext = '';
 
 	for (let n = 0; n < input.length; n++) {

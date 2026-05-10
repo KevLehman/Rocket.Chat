@@ -49,7 +49,7 @@ export async function setReaction(room: IRoom, user: IUser, message: IMessage, r
 
 	let isReacted;
 	if (userAlreadyReacted) {
-		const oldMessage = JSON.parse(JSON.stringify(message));
+		const oldMessage = structuredClone(message);
 		removeUserReaction(message, reaction, user.username as string);
 		if (Object.keys(message.reactions || {}).length === 0) {
 			delete message.reactions;
@@ -100,7 +100,7 @@ export async function executeSetReaction(
 	shouldReact?: boolean,
 ) {
 	// Check if the emoji is valid before proceeding
-	const reactionWithoutColons = reaction.replace(/:/g, '');
+	const reactionWithoutColons = reaction.replaceAll(/:/g, '');
 	reaction = `:${reactionWithoutColons}:`;
 
 	if (!emoji.list[reaction] && (await EmojiCustom.countByNameOrAlias(reactionWithoutColons)) === 0) {

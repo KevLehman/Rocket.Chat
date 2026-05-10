@@ -62,8 +62,8 @@ export class LDAPEEManager extends LDAPManager {
 					}
 
 					const memberFormat = ldap.options.groupFilterGroupMemberFormat
-						?.replace(/#{username}/g, options?.username || '#{username}')
-						.replace(/#{userdn}/g, options?.dn || '#{userdn}');
+						?.replaceAll(/#{username}/g, options?.username || '#{username}')
+						.replaceAll(/#{userdn}/g, options?.dn || '#{userdn}');
 
 					return membersOfGroupFilter.includes(memberFormat);
 				}) as ImporterBeforeImportCallback,
@@ -297,9 +297,9 @@ export class LDAPEEManager extends LDAPManager {
 		}
 		const searchOptions: ldapjs.SearchOptions = {
 			filter: filter
-				.replace(/#{username}/g, username)
-				.replace(/#{groupName}/g, groupName)
-				.replace(/#{userdn}/g, dn.replace(/\\/g, '\\5c')),
+				.replaceAll(/#{username}/g, username)
+				.replaceAll(/#{groupName}/g, groupName)
+				.replaceAll(/#{userdn}/g, dn.replaceAll(/\\/g, '\\5c')),
 			scope: 'sub',
 		};
 
@@ -604,7 +604,7 @@ export class LDAPEEManager extends LDAPManager {
 		}
 
 		const searchOptions = {
-			filter: filter.replace(/#{username}/g, username).replace(/#{userdn}/g, userDN.replace(/\\/g, '\\5c')),
+			filter: filter.replaceAll(/#{username}/g, username).replaceAll(/#{userdn}/g, userDN.replaceAll(/\\/g, '\\5c')),
 			scope: ldap.options.userSearchScope || 'sub',
 			sizeLimit: ldap.options.searchSizeLimit,
 		};

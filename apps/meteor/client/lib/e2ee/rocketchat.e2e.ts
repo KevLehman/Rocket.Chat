@@ -1,5 +1,5 @@
-import QueryString from 'querystring';
-import URL from 'url';
+import QueryString from 'node:querystring';
+import URL from 'node:url';
 
 import type { IE2EEMessage, IMessage, IRoom, IUser, IUploadWithUser, Serialized, IE2EEPinnedMessage } from '@rocket.chat/core-typings';
 import { isE2EEMessage, isEncryptedMessageContent } from '@rocket.chat/core-typings';

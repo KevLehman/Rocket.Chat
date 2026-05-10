@@ -1,6 +1,5 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { basename, dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { basename, join } from 'node:path';
 
 import i18next from 'i18next';
 
@@ -39,7 +38,7 @@ export async function writeResource(language: string, resource: unknown) {
 	return writeFile(join(resourcesDirectory, resourceBasename(language)), content, 'utf8');
 }
 
-export const rootDirectory = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+export const rootDirectory = join(import.meta.dirname, '..', '..');
 export const resourcesDirectory = join(rootDirectory, 'src', 'locales');
 export const distDirectory = join(rootDirectory, 'dist');
 

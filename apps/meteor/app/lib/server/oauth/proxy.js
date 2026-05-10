@@ -4,7 +4,7 @@ import _ from 'underscore';
 import { settings } from '../../../settings/server';
 
 OAuth._redirectUri = _.wrap(OAuth._redirectUri, (func, serviceName, ...args) => {
-	const proxy = settings.get('Accounts_OAuth_Proxy_services').replace(/\s/g, '').split(',');
+	const proxy = settings.get('Accounts_OAuth_Proxy_services').replaceAll(/\s/g, '').split(',');
 	if (proxy.includes(serviceName)) {
 		return `${settings.get('Accounts_OAuth_Proxy_host')}/oauth_redirect`;
 	}

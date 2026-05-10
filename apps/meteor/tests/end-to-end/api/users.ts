@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import type { Credentials } from '@rocket.chat/api-client';
 import type { IRoom, ISubscription, ITeam, IUser } from '@rocket.chat/core-typings';

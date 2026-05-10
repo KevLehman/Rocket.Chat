@@ -39,8 +39,8 @@ export async function insertOrUpdateEmoji(userId: string | null, emojiData: Emoj
 	const aliasValidation = /[:><&\|"'\/\\\(\)]/;
 
 	// silently strip colon; this allows for uploading :emojiname: as emojiname
-	emojiData.name = emojiData.name.replace(/:/g, '');
-	emojiData.aliases = emojiData.aliases?.replace(/:/g, '');
+	emojiData.name = emojiData.name.replaceAll(/:/g, '');
+	emojiData.aliases = emojiData.aliases?.replaceAll(/:/g, '');
 
 	if (nameValidation.test(emojiData.name)) {
 		throw new Meteor.Error('error-input-is-not-a-valid-field', `${emojiData.name} is not a valid name`, {

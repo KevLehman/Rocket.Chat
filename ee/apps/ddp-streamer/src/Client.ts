@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import type { IncomingMessage } from 'http';
+import { EventEmitter } from 'node:events';
+import type { IncomingMessage } from 'node:http';
 
 import { Presence } from '@rocket.chat/core-services';
 import type { ISocketConnection } from '@rocket.chat/core-typings';

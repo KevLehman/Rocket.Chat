@@ -72,7 +72,7 @@ class Route {
 		for (let i = 1, len = m.length; i < len; ++i) {
 			const key = keys[i - 1];
 			const val = decodeURLEncodedURIComponent(m[i]);
-			if (val !== undefined || !Object.prototype.hasOwnProperty.call(params, key.name)) {
+			if (val !== undefined || !Object.hasOwn(params, key.name)) {
 				params[key.name] = val;
 			}
 		}
@@ -182,7 +182,7 @@ export class Page {
 		if (!path || (!reload && this.current === path)) return;
 
 		const pathParts = path.split('?');
-		pathParts[0] = pathParts[0].replace(/\/\/+/g, '/');
+		pathParts[0] = pathParts[0].replaceAll(/\/\/+/g, '/');
 		path = pathParts.join('?');
 
 		const ctx = new Context(this, path, state);
@@ -195,7 +195,7 @@ export class Page {
 		if (!path || this.current === path) return;
 
 		const pathParts = path.split('?');
-		pathParts[0] = pathParts[0].replace(/\/\/+/g, '/');
+		pathParts[0] = pathParts[0].replaceAll(/\/\/+/g, '/');
 		path = pathParts.join('?');
 
 		const ctx = new Context(this, path, state);
@@ -243,5 +243,5 @@ export class Page {
 function decodeURLEncodedURIComponent(val: string): string {
 	if (typeof val !== 'string') return val;
 
-	return decodeURIComponent(val.replace(/\+/g, ' '));
+	return decodeURIComponent(val.replaceAll(/\+/g, ' '));
 }

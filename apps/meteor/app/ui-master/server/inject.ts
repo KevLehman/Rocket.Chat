@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import type { NextHandleFunction } from 'connect';
 import { Inject } from 'meteor/meteorhacks:inject-initial';
@@ -128,7 +128,7 @@ export const applyHeadInjections = (injections: Injection[]): ((html: string) =>
 			return i.content.trim().length > 0 ? i.tag : '';
 		})
 		.join('\n')
-		.replace(/\$/g, '$$$$')}\n</head>`;
+		.replaceAll(/\$/g, '$$$$')}\n</head>`;
 
 	return (html: string): string => html.replace('</head>', replacementHtml);
 };

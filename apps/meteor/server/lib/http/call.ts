@@ -60,7 +60,7 @@ function makeErrorByStatus(statusCode: number, content: string): Error {
 	let message = `failed [${statusCode}]`;
 
 	if (content) {
-		message += `${truncate(content.replace(/\n/g, ' '), 500)}`;
+		message += `${truncate(content.replaceAll(/\n/g, ' '), 500)}`;
 	}
 
 	return new Error(message);

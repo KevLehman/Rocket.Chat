@@ -1,6 +1,5 @@
 import { argv, exit, stdin as input, stdout as output } from 'node:process';
 import { createInterface } from 'node:readline/promises';
-import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
 import { baseLanguage, getResourceLanguages, readResource, resourcesDirectory, writeResource } from './common.mts';
@@ -102,25 +101,21 @@ const replaceSprintfParams = async (translationKey: string): Promise<void> => {
 	console.log('All translation files have been updated');
 };
 
-if (import.meta.url.startsWith('file:')) {
-	const modulePath = fileURLToPath(import.meta.url);
+if (import.meta.filename && argv[1] === import.meta.filename) {
+	const { positionals } = parseArgs({
+		args: argv.slice(2),
+		allowPositionals: true,
+	});
 
-	if (argv[1] === modulePath) {
-		const { positionals } = parseArgs({
-			args: argv.slice(2),
-			allowPositionals: true,
-		});
+	if (positionals.length === 0) {
+		console.error('Please provide at least one translation key as parameter');
+		exit(1);
+	}
 
-		if (positionals.length === 0) {
-			console.error('Please provide at least one translation key as parameter');
+	for (const arg of positionals) {
+		await replaceSprintfParams(arg).catch((error) => {
+			console.error(error);
 			exit(1);
-		}
-
-		for (const arg of positionals) {
-			await replaceSprintfParams(arg).catch((error) => {
-				console.error(error);
-				exit(1);
-			});
-		}
+		});
 	}
 }

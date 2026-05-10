@@ -6,7 +6,7 @@ function escapeReplaceString(str) {
 	 * this function, and for the resulting string which is passed back.
 	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 	 */
-	return str.replace(/\$/g, '$$$$');
+	return str.replaceAll(/\$/g, '$$$$');
 }
 
 Inject = {

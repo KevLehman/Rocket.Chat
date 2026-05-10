@@ -40,7 +40,7 @@ import type { AppServerOrchestrator } from '../orchestrator';
 import { Apps } from '../orchestrator';
 
 const rocketChatVersion = Info.version;
-const appsEngineVersionForMarketplace = Info.marketplaceApiVersion.replace(/-.*/g, '');
+const appsEngineVersionForMarketplace = Info.marketplaceApiVersion.replaceAll(/-.*/g, '');
 const getDefaultHeaders = (): Record<string, any> => ({
 	'X-Apps-Engine-Version': appsEngineVersionForMarketplace,
 });

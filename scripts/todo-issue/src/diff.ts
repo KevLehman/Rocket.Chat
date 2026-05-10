@@ -20,7 +20,7 @@ function extractMentions(text: string): { cleaned: string; mentions: string[] } 
 	}
 	MENTION_REGEX.lastIndex = 0;
 
-	const cleaned = text.replace(MENTION_REGEX, '').replace(/\s{2,}/g, ' ').trim();
+	const cleaned = text.replace(MENTION_REGEX, '').replaceAll(/\s{2,}/g, ' ').trim();
 	return { cleaned, mentions };
 }
 
@@ -53,7 +53,7 @@ function extractBody(changes: Change[], startIndex: number, prefix: string): str
 
 		if (TODO_LINE_REGEX.test(content)) break;
 
-		const prefixMatch = content.match(new RegExp(`^\\s*${trimmedPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
+		const prefixMatch = content.match(new RegExp(`^\\s*${trimmedPrefix.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
 		if (!prefixMatch) break;
 
 		const lineText = content.slice(prefixMatch[0].length).trim();

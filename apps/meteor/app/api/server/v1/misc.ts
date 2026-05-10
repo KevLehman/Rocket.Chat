@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import type { IDirectoryChannelResult, IDirectoryUserResult, IRoom, IUser } from '@rocket.chat/core-typings';
 import { Settings, Users, WorkspaceCredentials } from '@rocket.chat/models';
@@ -327,7 +327,7 @@ API.v1.get(
 				</svg>
 			`
 			.trim()
-			.replace(/\>[\s]+\</gm, '><');
+			.replaceAll(/\>[\s]+\</gm, '><');
 
 		return {
 			statusCode: 200 as const,

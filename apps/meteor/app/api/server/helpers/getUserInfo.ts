@@ -34,7 +34,7 @@ const filterOutdatedVersionUpdateBanners = (banners: NonNullable<IUser['banners'
 				return true;
 			}
 
-			const version = id.replace('versionUpdate-', '').replace(/_/g, '.');
+			const version = id.replace('versionUpdate-', '').replaceAll(/_/g, '.');
 			if (!semver.valid(version) || semver.lte(version, Info.version)) {
 				return false;
 			}

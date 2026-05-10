@@ -1,5 +1,5 @@
-import { randomUUID } from 'crypto';
-import path from 'path';
+import { randomUUID } from 'node:crypto';
+import path from 'node:path';
 
 import type { Credentials } from '@rocket.chat/api-client';
 import type { IUser } from '@rocket.chat/core-typings';

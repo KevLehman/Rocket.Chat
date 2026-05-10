@@ -78,7 +78,7 @@ ${t('If_you_didnt_try_to_login_in_your_account_please_ignore_this_email')}
 		}
 
 		// Remove non digits
-		codeFromEmail = codeFromEmail.replace(/([^\d])/g, '');
+		codeFromEmail = codeFromEmail.replaceAll(/([^\d])/g, '');
 
 		const { code, expire } = user.services.emailCode;
 

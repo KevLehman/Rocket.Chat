@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { randomUUID } from 'crypto';
-import * as fs from 'fs';
-import * as path from 'path';
+import { randomUUID } from 'node:crypto';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 import AxeBuilder from '@axe-core/playwright';
 import type { Locator, APIResponse, APIRequestContext } from '@playwright/test';

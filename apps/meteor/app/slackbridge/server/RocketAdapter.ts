@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import util from 'util';
+import util from 'node:util';
 
 import { Messages, Rooms, Users } from '@rocket.chat/models';
 import { Random } from '@rocket.chat/random';
@@ -96,7 +96,7 @@ export default class RocketAdapter {
 						const slackChannel = slack.getSlackChannel(rocketMsg.rid);
 						if (slackChannel != null) {
 							const slackTS = slack.getTimeStamp(rocketMsg);
-							await slack.postReactionAdded(reaction.replace(/:/g, ''), slackChannel.id, slackTS);
+							await slack.postReactionAdded(reaction.replaceAll(/:/g, ''), slackChannel.id, slackTS);
 						}
 					}
 				}
@@ -125,7 +125,7 @@ export default class RocketAdapter {
 						const slackChannel = slack.getSlackChannel(rocketMsg.rid);
 						if (slackChannel != null) {
 							const slackTS = slack.getTimeStamp(rocketMsg);
-							await slack.postReactionRemove(reaction.replace(/:/g, ''), slackChannel.id, slackTS);
+							await slack.postReactionRemove(reaction.replaceAll(/:/g, ''), slackChannel.id, slackTS);
 						}
 					}
 				}
@@ -237,7 +237,7 @@ export default class RocketAdapter {
 	}
 
 	createRocketID(slackChannel, ts) {
-		return `slack-${slackChannel}-${ts.replace(/\./g, '-')}`;
+		return `slack-${slackChannel}-${ts.replaceAll(/\./g, '-')}`;
 	}
 
 	async findChannel(slackChannelId) {
@@ -514,17 +514,17 @@ export default class RocketAdapter {
 	async convertSlackMsgTxtToRocketTxtFormat(slackMsgTxt) {
 		const regex = /(?:<@)([a-zA-Z0-9]+)(?:\|.+)?(?:>)/g;
 		if (!_.isEmpty(slackMsgTxt)) {
-			slackMsgTxt = slackMsgTxt.replace(/<!everyone>/g, '@all');
-			slackMsgTxt = slackMsgTxt.replace(/<!channel>/g, '@all');
-			slackMsgTxt = slackMsgTxt.replace(/<!here>/g, '@here');
-			slackMsgTxt = slackMsgTxt.replace(/&gt;/g, '>');
-			slackMsgTxt = slackMsgTxt.replace(/&lt;/g, '<');
-			slackMsgTxt = slackMsgTxt.replace(/&amp;/g, '&');
-			slackMsgTxt = slackMsgTxt.replace(/:simple_smile:/g, ':smile:');
-			slackMsgTxt = slackMsgTxt.replace(/:memo:/g, ':pencil:');
-			slackMsgTxt = slackMsgTxt.replace(/:piggy:/g, ':pig:');
-			slackMsgTxt = slackMsgTxt.replace(/:uk:/g, ':gb:');
-			slackMsgTxt = slackMsgTxt.replace(/<(http[s]?:[^>]*)>/g, '$1');
+			slackMsgTxt = slackMsgTxt.replaceAll(/<!everyone>/g, '@all');
+			slackMsgTxt = slackMsgTxt.replaceAll(/<!channel>/g, '@all');
+			slackMsgTxt = slackMsgTxt.replaceAll(/<!here>/g, '@here');
+			slackMsgTxt = slackMsgTxt.replaceAll(/&gt;/g, '>');
+			slackMsgTxt = slackMsgTxt.replaceAll(/&lt;/g, '<');
+			slackMsgTxt = slackMsgTxt.replaceAll(/&amp;/g, '&');
+			slackMsgTxt = slackMsgTxt.replaceAll(/:simple_smile:/g, ':smile:');
+			slackMsgTxt = slackMsgTxt.replaceAll(/:memo:/g, ':pencil:');
+			slackMsgTxt = slackMsgTxt.replaceAll(/:piggy:/g, ':pig:');
+			slackMsgTxt = slackMsgTxt.replaceAll(/:uk:/g, ':gb:');
+			slackMsgTxt = slackMsgTxt.replaceAll(/<(http[s]?:[^>]*)>/g, '$1');
 
 			const promises = [];
 

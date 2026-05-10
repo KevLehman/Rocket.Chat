@@ -1,5 +1,4 @@
 import type { Reporter, TestCase, TestResult } from '@playwright/test/reporter';
-import fetch from 'node-fetch';
 
 const LOG = '[JIRA reporter]';
 
@@ -101,7 +100,7 @@ class JIRAReporter implements Reporter {
 		// replace all ()[]- with nothing
 		const search = await fetch(
 			`${this.url}/rest/api/3/search/jql?${new URLSearchParams({
-				jql: `project = FLAKY AND summary ~ '${payload.name.replace(/[()[\]-]/g, '')}'`,
+				jql: `project = FLAKY AND summary ~ '${payload.name.replaceAll(/[()[\]-]/g, '')}'`,
 			})}`,
 			{
 				method: 'GET',

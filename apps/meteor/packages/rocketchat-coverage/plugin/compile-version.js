@@ -1,6 +1,6 @@
-import { exec } from 'child_process';
-import os from 'os';
-import util from 'util';
+import { exec } from 'node:child_process';
+import os from 'node:os';
+import util from 'node:util';
 
 import libReport from 'istanbul-lib-report';
 import reports from 'istanbul-reports';

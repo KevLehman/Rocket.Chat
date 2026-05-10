@@ -1,4 +1,4 @@
-import { log } from 'console';
+import { log } from 'node:console';
 
 import { Analytics } from '@rocket.chat/core-services';
 import type { IStats } from '@rocket.chat/core-typings';

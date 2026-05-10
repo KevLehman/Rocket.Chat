@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 import { convertFromDaysToMilliseconds } from '@rocket.chat/tools';
 import bcrypt from 'bcrypt';

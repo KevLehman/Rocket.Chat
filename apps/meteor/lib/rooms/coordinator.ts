@@ -66,12 +66,12 @@ export abstract class RoomCoordinator {
 			// get the content behind : and (\\d+/)
 			key = key.substring(1, firstRegexpChar > 0 ? firstRegexpChar : undefined);
 			// remove +?*
-			key = key.replace(/[\+\*\?]+/g, '');
+			key = key.replaceAll(/[\+\*\?]+/g, '');
 
 			return fields[key] || '';
 		});
 
-		path = path.replace(/\/\/+/g, '/'); // Replace multiple slashes with single slash
+		path = path.replaceAll(/\/\/+/g, '/'); // Replace multiple slashes with single slash
 
 		// remove trailing slash
 		// but keep the root slash if it's the only one

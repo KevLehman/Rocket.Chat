@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 
 import type { Credentials } from '@rocket.chat/api-client';
 import type { ImageAttachmentProps, IRoom, IUser, SettingValue } from '@rocket.chat/core-typings';

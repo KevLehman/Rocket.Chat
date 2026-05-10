@@ -8,10 +8,10 @@ export const emojiParser = (html: string) => {
 	html = html.trim();
 
 	// &#39; to apostrophe (') for emojis such as :')
-	html = html.replace(/&#39;/g, "'");
+	html = html.replaceAll(/&#39;/g, "'");
 
 	// '<br>' to ' <br> ' for emojis such at line breaks
-	html = html.replace(/<br>/g, ' <br> ');
+	html = html.replaceAll(/<br>/g, ' <br> ');
 
 	html = Object.entries(emoji.packages)
 		.reverse()
@@ -66,10 +66,10 @@ export const emojiParser = (html: string) => {
 	html = checkEmojiOnly.innerHTML;
 
 	// apostrophe (') back to &#39;
-	html = html.replace(/\'/g, '&#39;');
+	html = html.replaceAll(/\'/g, '&#39;');
 
 	// line breaks ' <br> ' back to '<br>'
-	html = html.replace(/ <br> /g, '<br>');
+	html = html.replaceAll(/ <br> /g, '<br>');
 
 	return html;
 };

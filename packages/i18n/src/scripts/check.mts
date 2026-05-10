@@ -1,5 +1,4 @@
 import { argv, exit, stderr, stdout } from 'node:process';
-import { fileURLToPath } from 'node:url';
 import { formatWithOptions, parseArgs, styleText } from 'node:util';
 
 import { baseLanguage, getLanguagePlurals, getResourceLanguages, readContent, readResource, writeResource } from './common.mts';
@@ -338,7 +337,7 @@ const trimEndOfFile = describeTask('trim-eof', async function* () {
 
 	for (const language of languages) {
 		const content = await readContent(language);
-		const trimmedContent = content.replace(/\s+$/g, '');
+		const trimmedContent = content.replaceAll(/\s+$/g, '');
 
 		if (trimmedContent.length === content.length) continue;
 
@@ -607,26 +606,22 @@ async function check({ fix, task }: { fix?: boolean; task?: string[] } = {}) {
 	}
 }
 
-if (import.meta.url.startsWith('file:')) {
-	const modulePath = fileURLToPath(import.meta.url);
-
-	if (argv[1] === modulePath) {
-		const { values } = parseArgs({
-			args: argv.slice(2),
-			options: {
-				fix: { type: 'boolean', short: 'f' },
-				task: {
-					type: 'string',
-					multiple: true,
-					short: 't',
-					choices: Object.keys(tasksByName),
-				},
+if (import.meta.filename && argv[1] === import.meta.filename) {
+	const { values } = parseArgs({
+		args: argv.slice(2),
+		options: {
+			fix: { type: 'boolean', short: 'f' },
+			task: {
+				type: 'string',
+				multiple: true,
+				short: 't',
+				choices: Object.keys(tasksByName),
 			},
-		});
+		},
+	});
 
-		check(values).catch((error) => {
-			console.error(error);
-			exit(1);
-		});
-	}
+	check(values).catch((error) => {
+		console.error(error);
+		exit(1);
+	});
 }

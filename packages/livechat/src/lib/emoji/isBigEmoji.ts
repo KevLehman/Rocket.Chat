@@ -6,7 +6,7 @@ const emojiRanges = [
 	' |\n', // allow spaces and line breaks
 ].join('|');
 
-const removeSpaces = (str: string) => str.replace(/\s/g, '');
+const removeSpaces = (str: string) => str.replaceAll(/\s/g, '');
 
 const removeAllEmoji = (str: string) => str.replace(new RegExp(emojiRanges, 'g'), '');
 

@@ -69,7 +69,7 @@ const showAlertsFromCloud = async (
 	return sendMessagesToAdmins({
 		msgs: async ({ adminUser }) => getMessagesToSendToAdmins(alerts, adminUser),
 		banners: alerts.map((alert) => ({
-			id: `alert-${alert.id}`.replace(/\./g, '_'),
+			id: `alert-${alert.id}`.replaceAll(/\./g, '_'),
 			priority: 10,
 			title: alert.title,
 			text: alert.text,

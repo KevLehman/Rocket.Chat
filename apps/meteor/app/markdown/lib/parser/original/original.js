@@ -19,7 +19,7 @@ export const original = (
 	message = markdown(message, options);
 
 	// Replace linebreak to br
-	message.html = message.html.replace(/\n/gm, '<br>');
+	message.html = message.html.replaceAll(/\n/gm, '<br>');
 
 	return message;
 };

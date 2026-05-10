@@ -62,7 +62,7 @@ const defineVisitor = async (smsNumber: string, targetDepartment?: string) => {
 
 	if (!visitor) {
 		data = Object.assign(data, {
-			username: smsNumber.replace(/[^0-9]/g, ''),
+			username: smsNumber.replaceAll(/[^0-9]/g, ''),
 			phone: {
 				number: smsNumber,
 			},

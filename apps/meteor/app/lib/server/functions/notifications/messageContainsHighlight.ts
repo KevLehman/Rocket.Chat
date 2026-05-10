@@ -20,7 +20,7 @@ export function messageContainsHighlight(message: Pick<IMessage, 'msg'>, highlig
 	return highlights.some((highlight: string) => {
 		// Due to unnecessary escaping in escapeRegExp, we need to remove the escape character for the following characters: - = ! :
 		// This is necessary because it was crashing the client due to Invalid regular expression error.
-		const hl = escapeRegExp(highlight).replace(/\\([-=!:])/g, '$1');
+		const hl = escapeRegExp(highlight).replaceAll(/\\([-=!:])/g, '$1');
 		const pattern =
 			`(?<!:)${leftBoundary}${hl}${rightBoundary}:` +
 			`|:${leftBoundary}${hl}${rightBoundary}(?!:)` +

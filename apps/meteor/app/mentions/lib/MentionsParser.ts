@@ -102,7 +102,7 @@ export class MentionsParser {
 		});
 
 	replaceChannels = (msg: string, { temp, channels }: IMessage) =>
-		msg.replace(/&#39;/g, "'").replace(this.channelMentionRegex, (match, prefix, mention) => {
+		msg.replaceAll(/&#39;/g, "'").replace(this.channelMentionRegex, (match, prefix, mention) => {
 			if (
 				!temp &&
 				!channels?.find((c) => {
@@ -121,14 +121,14 @@ export class MentionsParser {
 
 	getUserMentions(msg: string) {
 		// First remove the text inside md links
-		const str = msg.replace(/\[[^\]]*\]\([^)]+\)/g, '');
+		const str = msg.replaceAll(/\[[^\]]*\]\([^)]+\)/g, '');
 		// Then do the match
 		return (str.match(this.userMentionRegex) || []).map((match) => match.trim());
 	}
 
 	getChannelMentions(msg: string) {
 		// First remove the text inside md links
-		const str = msg.replace(/\[[^\]]*\]\([^)]+\)/g, '');
+		const str = msg.replaceAll(/\[[^\]]*\]\([^)]+\)/g, '');
 		// Then do the match
 		return (str.match(this.channelMentionRegex) || []).map((match) => match.trim());
 	}

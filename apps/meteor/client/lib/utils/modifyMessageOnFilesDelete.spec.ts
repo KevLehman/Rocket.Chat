@@ -2,8 +2,6 @@ import type { IMessage, MessageAttachment, FileAttachmentProps, MessageQuoteAtta
 
 import { modifyMessageOnFilesDelete } from './modifyMessageOnFilesDelete';
 
-global.structuredClone = (val: any) => JSON.parse(JSON.stringify(val));
-
 const fileAttachment: FileAttachmentProps = { title: 'Image', title_link: 'url', image_url: 'image.png', type: 'file' };
 const nonFileAttachment: MessageAttachment = { text: 'Non-file attachment', color: '#ff0000' };
 const quoteAttachment: MessageQuoteAttachment = {
@@ -75,7 +73,7 @@ describe('modifyMessageOnFilesDelete', () => {
 	it('should not mutate the original message', () => {
 		const message = createMessage();
 
-		const original = JSON.parse(JSON.stringify(message));
+		const original = structuredClone(message);
 		modifyMessageOnFilesDelete(message);
 
 		expect(message).toEqual(original);

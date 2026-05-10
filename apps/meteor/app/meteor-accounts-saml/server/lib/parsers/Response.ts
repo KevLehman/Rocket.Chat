@@ -171,7 +171,7 @@ export class ResponseParser {
 			const key = profileKeys[i];
 
 			if (key.match(/\./)) {
-				profile[key.replace(/\./g, '-')] = profile[key];
+				profile[key.replaceAll(/\./g, '-')] = profile[key];
 				delete profile[key];
 			}
 		}

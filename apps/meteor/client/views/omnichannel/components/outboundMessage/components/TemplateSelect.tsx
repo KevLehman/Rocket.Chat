@@ -34,7 +34,7 @@ const TemplateSelect = ({ templates, value, onChange, ...props }: TemplateSelect
 			onChange={onChange}
 			renderItem={({ label, value: templateId, ...props }) => {
 				const { language: templateLanguage = '' } = templateMap.get(templateId) || {};
-				const normalizedTemplateLanguage = templateLanguage.replace(/_/g, '-').replace(/en-US/g, 'en');
+				const normalizedTemplateLanguage = templateLanguage.replaceAll(/_/g, '-').replaceAll(/en-US/g, 'en');
 				const language = languages.find((lang) => lang.key === normalizedTemplateLanguage);
 
 				return (

@@ -24,11 +24,11 @@
 
 */
 
-var net = require('net'),
-	tls = require('tls'),
-	util = require('util'),
-	crypto = require('crypto'),
-	events = require('events');
+var net = require('node:net'),
+	tls = require('node:tls'),
+	util = require('node:util'),
+	crypto = require('node:crypto'),
+	events = require('node:events');
 
 // Constructor
 function POP3Client(port, host, options) {
@@ -142,7 +142,7 @@ function POP3Client(port, host, options) {
 		s.removeAllListeners('error');
 		socket = null;
 
-		var sslcontext = require('crypto').createCredentials(options);
+		var sslcontext = require('node:crypto').createCredentials(options);
 		var pair = tls.createSecurePair(sslcontext, false);
 		var cleartext = pipe(pair);
 

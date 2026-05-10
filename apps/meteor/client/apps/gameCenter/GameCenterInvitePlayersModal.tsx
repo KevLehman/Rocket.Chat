@@ -27,7 +27,7 @@ const GameCenterInvitePlayersModal = ({ game, onClose }: IGameCenterInvitePlayer
 	const openedRoom = useOpenedRoom();
 
 	const sendInvite = async () => {
-		const privateGroupName = `${name.replace(/\s/g, '-')}-${Random.id(10)}`;
+		const privateGroupName = `${name.replaceAll(/\s/g, '-')}-${Random.id(10)}`;
 
 		try {
 			const result = await callWithErrorHandling('createPrivateGroup' as any, privateGroupName, users);

@@ -17,7 +17,7 @@ const open60td = '<td style="border: 1px solid; text-align: left; width: 60%; pa
 const closetd = '</td>';
 
 function _getLink(attachment: { title_link: string }): string {
-	const url = attachment.title_link.replace(/ /g, '%20');
+	const url = attachment.title_link.replaceAll(/ /g, '%20');
 
 	if (url.match(/^(https?:)?\/\//i)) {
 		return url;

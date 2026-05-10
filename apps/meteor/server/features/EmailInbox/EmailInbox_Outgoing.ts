@@ -308,7 +308,7 @@ callbacks.add(
 				type: 'section',
 				text: {
 					type: 'mrkdwn',
-					text: `> ---\n${replyToMessage.msg.replace(/^/gm, '> ')}`,
+					text: `> ---\n${replyToMessage.msg.replaceAll(/^/gm, '> ')}`,
 				},
 			},
 		];

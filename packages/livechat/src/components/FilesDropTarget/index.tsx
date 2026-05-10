@@ -4,7 +4,7 @@ import { useState, type CSSProperties, type ChangeEvent, type TargetedEvent } fr
 import styles from './styles.scss';
 import { createClassName } from '../../helpers/createClassName';
 
-const escapeForRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const escapeForRegExp = (string: string) => string.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 type FilesDropTargetProps = {
 	overlayed?: boolean;

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const Module = require('module');
+const fs = require('node:fs');
+const Module = require('node:module');
 
 const peggy = require('peggy');
 

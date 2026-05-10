@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 
 import type { AppManager } from '../AppManager';
 import { ProxiedApp } from '../ProxiedApp';
@@ -10,7 +10,7 @@ export class AppCompiler {
 		const result: { [key: string]: string } = {};
 
 		Object.entries(files).forEach(([name, content]) => {
-			result[name.replace(/\$/g, '.')] = content;
+			result[name.replaceAll(/\$/g, '.')] = content;
 		});
 
 		return result;
